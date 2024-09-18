@@ -1,6 +1,9 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
-import Home from "../views/Home.vue";
+import Layout from "../components/Layout.vue";
+import EnterpriseData from "../views/EnterpriseData.vue";
+import ScientificLeader from "../views/ScientificLeader.vue";
+import SecondaryAnalysis from "../views/SecondaryAnalysis.vue";
 
 const routes = [
   {
@@ -10,8 +13,25 @@ const routes = [
   },
   {
     path: "/",
-    name: "home",
-    component: Home,
+    component: Layout,
+    redirect: "/enterprise-data",
+    children: [
+      {
+        path: "/enterprise-data",
+        name: "enterprise-data",
+        component: EnterpriseData,
+      },
+      {
+        path: "/scientific-leader",
+        name: "scientific-leader",
+        component: ScientificLeader,
+      },
+      {
+        path: "/secondary-analysis",
+        name: "secondary-analysis",
+        component: SecondaryAnalysis,
+      },
+    ],
   },
 ];
 
