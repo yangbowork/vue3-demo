@@ -4,7 +4,7 @@ import { ref } from "vue";
 
 <template>
   <div>
-    <div class="title"> 二次分析 </div>
+    <div class="title">二次分析</div>
   </div>
 </template>
 

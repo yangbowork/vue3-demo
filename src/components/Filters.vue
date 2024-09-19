@@ -96,7 +96,7 @@ const handleExpand = (index) => {
   display: flex;
   flex-direction: column;
   width: 314px;
-  // height: 100%;
+  min-height: 100%;
   padding: 30px 20px;
   background-color: #fff;
   box-sizing: border-box;

@@ -3,7 +3,7 @@
  * @Date: 2024-09-18 14:11:24
  * @Description: 
 -->
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 
 </script>
