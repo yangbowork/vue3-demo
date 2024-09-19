@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Layout from "../components/Layout.vue";
 import EnterpriseData from "../views/EnterpriseData.vue";
+import EnterpriseDetail from "../views/EnterpriseDetail.vue";
 import ScientificLeader from "../views/ScientificLeader.vue";
 import SecondaryAnalysis from "../views/SecondaryAnalysis.vue";
 
@@ -20,6 +21,11 @@ const routes = [
         path: "/enterprise-data",
         name: "enterprise-data",
         component: EnterpriseData,
+      },
+      {
+        path: "/enterprise-data/:id",
+        name: "enterprise-detail",
+        component: EnterpriseDetail,
       },
       {
         path: "/scientific-leader",

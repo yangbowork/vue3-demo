@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { watch } from "vue";
 const modelValue = defineModel();
 const props = defineProps({
   filtersList: {
@@ -20,17 +20,17 @@ watch(
         };
       });
       modelValue.value = obj;
-      console.log(modelValue.value);
     }
   },
-  { deep: true }
+  { immediate: true }
 );
 
 const handleExpand = (index) => {
   if (props.filtersList[index].disabled) {
     return;
   }
-  props.filtersList[index].isExpand = !props.filtersList[index].isExpand;
+  const title = props.filtersList[index].title;
+  modelValue.value[title].isExpand = !modelValue.value[title].isExpand;
 };
 </script>
 
@@ -96,7 +96,7 @@ const handleExpand = (index) => {
   display: flex;
   flex-direction: column;
   width: 314px;
-  height: 100%;
+  // height: 100%;
   padding: 30px 20px;
   background-color: #fff;
   box-sizing: border-box;
@@ -145,6 +145,9 @@ const handleExpand = (index) => {
 
       .filters-item-content {
         margin-top: 16px;
+        :deep(.el-checkbox) {
+          margin-right: 18px;
+        }
       }
     }
   }

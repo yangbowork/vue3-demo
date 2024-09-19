@@ -23,7 +23,11 @@ const navbarList = ref([
 watch(
   () => router.currentRoute.value.path,
   (newPath) => {
-    currentNavbar.value = newPath;
+    navbarList.value.forEach((item) => {
+      if (newPath.includes(item.path)) {
+        currentNavbar.value = item.path;
+      }
+    });
   },
   {
     immediate: true,
