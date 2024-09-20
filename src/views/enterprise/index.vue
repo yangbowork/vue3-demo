@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import Filters from "../components/Filters.vue";
+import Filters from "@/components/Filters.vue";
 
 const router = useRouter();
 
@@ -147,43 +147,47 @@ const tableData = ref([
   },
 ]);
 
-const toDetail = (item) => {
-  router.push(`/enterprise-data/${item.id}`);
+const toDetail = (item: any) => {
+  router.push(`/enterprise/${item.id}`);
 };
 </script>
 
 <template>
-  <div class="enterprise-data">
+  <div class="enterprise">
     <Filters
       class="filters"
       v-model="filterSelected"
       :filtersList="filtersList"
     />
-    <div class="enterprise-data-content">
-      <div class="enterprise-data-search">
+    <div class="enterprise-content">
+      <div class="enterprise-search">
         <el-input
           v-model="searchValue"
           placeholder="请输入企业名称"
-          class="enterprise-data-search-input"
+          class="enterprise-search-input"
         />
-        <div class="enterprise-data-search-button" @click="searchData">
-          <img src="../assets/svg/search.svg" alt="" />
+        <div class="enterprise-search-button" @click="searchData">
+          <img src="@/assets/svg/search.svg" alt="" />
         </div>
       </div>
-      <div class="enterprise-data-search-result" v-show="isShowSearchResult">
+      <div class="enterprise-search-result" v-show="isShowSearchResult">
         为您找到 <span>2888</span> 个结果，检索耗时 <span>8</span> ms
       </div>
-      <div class="enterprise-data-inner">
-        <div class="enterprise-data-inner-select">
+      <div class="enterprise-inner">
+        <div class="enterprise-inner-select">
           <div class="select-item" @click="isRelativeUp = !isRelativeUp">
             <span>相关度排序</span>
             <template v-if="isRelativeUp">
-              <img class="arrow-icon" src="../assets/svg/arrow-up.svg" alt="" />
+              <img
+                class="arrow-icon"
+                src="@/assets/svg/arrow-up.svg"
+                alt=""
+              />
             </template>
             <template v-else>
               <img
                 class="arrow-icon"
-                src="../assets/svg/arrow-down.svg"
+                src="@/assets/svg/arrow-down.svg"
                 alt=""
               />
             </template>
@@ -191,23 +195,27 @@ const toDetail = (item) => {
           <div class="select-item" @click="isNameUp = !isNameUp">
             <span>名称排序a-z</span>
             <template v-if="isNameUp">
-              <img class="arrow-icon" src="../assets/svg/arrow-up.svg" alt="" />
+              <img
+                class="arrow-icon"
+                src="@/assets/svg/arrow-up.svg"
+                alt=""
+              />
             </template>
             <template v-else>
               <img
                 class="arrow-icon"
-                src="../assets/svg/arrow-down.svg"
+                src="@/assets/svg/arrow-down.svg"
                 alt=""
               />
             </template>
           </div>
         </div>
         <div
-          class="enterprise-data-inner-table"
+          class="enterprise-inner-table"
           v-for="item in tableData"
           @click="toDetail(item)"
         >
-          <div class="enterprise-data-inner-table-item">
+          <div class="enterprise-inner-table-item">
             <div class="item-title">{{ item.companyName }}</div>
             <div class="item-row">
               <span class="table-title">成立日期：</span>
@@ -251,9 +259,10 @@ const toDetail = (item) => {
 </template>
 
 <style lang="scss" scoped>
-.enterprise-data {
+.enterprise {
   display: flex;
   width: 100%;
+  min-height: 100%;
   background-color: #f8f9fd;
 
   .filters {
@@ -261,12 +270,12 @@ const toDetail = (item) => {
     background-color: #fff;
   }
 
-  .enterprise-data-content {
+  .enterprise-content {
     flex: 1;
     width: 0;
     padding: 36px 60px 0 34px;
 
-    .enterprise-data-search {
+    .enterprise-search {
       position: relative;
       height: 60px;
       margin-right: 100px;
@@ -287,7 +296,7 @@ const toDetail = (item) => {
         }
       }
 
-      .enterprise-data-search-button {
+      .enterprise-search-button {
         position: absolute;
         right: 4px;
         top: 4px;
@@ -312,7 +321,7 @@ const toDetail = (item) => {
       }
     }
 
-    .enterprise-data-search-result {
+    .enterprise-search-result {
       margin-top: 20px;
       margin-left: 26px;
       font-size: 16px;
@@ -323,7 +332,7 @@ const toDetail = (item) => {
       }
     }
 
-    .enterprise-data-inner {
+    .enterprise-inner {
       display: flex;
       flex-direction: column;
       margin-top: 22px;
@@ -331,9 +340,10 @@ const toDetail = (item) => {
       border-radius: 8px;
       background-color: #fff;
 
-      .enterprise-data-inner-select {
+      .enterprise-inner-select {
         display: flex;
         align-items: center;
+        margin-bottom: 12px;
         padding-left: 12px;
 
         .select-item {
@@ -360,14 +370,14 @@ const toDetail = (item) => {
         }
       }
 
-      .enterprise-data-inner-table {
+      .enterprise-inner-table {
         padding: 0 44px 24px 32px;
 
         &:hover {
           background: #f3f8fc;
         }
 
-        & + .enterprise-data-inner-table {
+        & + .enterprise-inner-table {
           &:before {
             content: "";
             display: block;
@@ -411,7 +421,7 @@ const toDetail = (item) => {
         }
       }
 
-      .enterprise-data-inner-table:first-child {
+      .enterprise-inner-table:first-child {
         padding: 32px 44px 24px 32px;
       }
     }

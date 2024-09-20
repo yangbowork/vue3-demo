@@ -22,7 +22,7 @@ const spanRef = ref();
 const isSendValidationCode = ref("发送验证码");
 const showCheck = ref(false);
 // 发送验证码
-async function sendValidationCode(phone) {
+async function sendValidationCode(phone: any) {
   // 用户是否已同意协议，未同意显示提示并不再执行
   if (!checkAgree.value) {
     ElMessage.error("请先同意用户协议和隐私条款");
@@ -58,7 +58,7 @@ const login = () => {
     ElMessage.error("请先同意用户协议和隐私条款");
     return;
   }
-  form.value.validate((valid, fields) => {
+  form.value.validate((valid: any, fields: any) => {
     if (valid) {
       router.push("/");
     } else {
@@ -75,7 +75,7 @@ const login = () => {
       <div class="login-container-bg-title">
         <img
           class="login-container-bg-icon"
-          src="../assets/svg/icon.svg"
+          src="@/assets/svg/icon.svg"
           alt=""
         />
         <span class="login-container-bg-title-text">科技情报雷达</span>
@@ -86,7 +86,7 @@ const login = () => {
         </div>
         <img
           class="login-container-bg-vector"
-          src="../assets/svg/vector.svg"
+          src="@/assets/svg/vector.svg"
           alt=""
         />
       </div>
@@ -141,10 +141,10 @@ const login = () => {
                 @click="checkAgree = !checkAgree"
               >
                 <template v-if="checkAgree">
-                  <img src="../assets/svg/selected.svg" alt="" />
+                  <img src="@/assets/svg/selected.svg" alt="" />
                 </template>
                 <template v-else>
-                  <img src="../assets/svg/unselected.svg" alt="" />
+                  <img src="@/assets/svg/unselected.svg" alt="" />
                 </template>
               </div>
               <span>我已阅读并同意</span>
@@ -158,7 +158,7 @@ const login = () => {
               <span>登录</span>
               <img
                 class="arrow-right"
-                src="../assets/svg/arrow-right.svg"
+                src="@/assets/svg/arrow-right.svg"
                 alt=""
               />
             </div>
@@ -248,7 +248,7 @@ const login = () => {
     position: relative;
     width: 40%;
     height: 100%;
-    background: url("../assets/img/bg.png") no-repeat center center;
+    background: url("@/assets/img/bg.png") no-repeat center center;
     background-size: 100% 100%;
 
     .login-container-bg-title {
@@ -295,7 +295,7 @@ const login = () => {
     position: relative;
     width: 60%;
     height: 100%;
-    background: url("../assets/img/bg-frame.png") no-repeat right bottom;
+    background: url("@/assets/img/bg-frame.png") no-repeat right bottom;
     background-size: auto 70%;
 
     .login-container-content-form {

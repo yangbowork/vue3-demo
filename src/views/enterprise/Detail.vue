@@ -17,7 +17,7 @@ const companyInfo = ref({
 });
 
 const goBack = () => {
-  router.go(-1);
+  router.push("/enterprise");
 };
 
 const titleList = ref(["工商信息", "技术信息", "融资信息", "公司信息"]);
@@ -48,10 +48,10 @@ const initLineOption = () => {
       axisPointer: {
         type: "line",
       },
-      position: function (point) {
+      position: function (point: any) {
         return [point[0], 10];
       },
-      formatter: (arr) => {
+      formatter: (arr: any) => {
         if (arr && arr.length > 0) {
           const val = arr[0];
           const str = `${val.marker}${val.value}`;
@@ -217,11 +217,11 @@ const competitorData = ref([
   <div class="enterprise-detail">
     <div class="company-info">
       <div class="back" @click="goBack">
-        <img src="../assets/svg/back.svg" alt="" />
+        <img src="@/assets/svg/back.svg" alt="" />
       </div>
 
       <div class="company-info-content">
-        <img class="company-logo" src="../assets/img/company.png" alt="" />
+        <img class="company-logo" src="@/assets/img/company.png" alt="" />
         <div class="company-name">{{ companyInfo.companyName }}</div>
         <div class="company-item">
           <span class="company-item-label">成立日期：</span>
@@ -273,14 +273,14 @@ const competitorData = ref([
         <div class="left-content">
           <div class="top-container">
             <div class="card-title-container">
-              <img src="../assets/svg/title-icon.svg" alt="" />
+              <img src="@/assets/svg/title-icon.svg" alt="" />
               <span>股东占比</span>
             </div>
             <div ref="pieEchartRef" class="echart-container"></div>
           </div>
           <div class="bottom-container">
             <div class="card-title-container">
-              <img src="../assets/svg/title-icon.svg" alt="" />
+              <img src="@/assets/svg/title-icon.svg" alt="" />
               <span>历史中标</span>
             </div>
             <div ref="lineEchartRef" class="echart-container"></div>
@@ -288,7 +288,7 @@ const competitorData = ref([
         </div>
         <div class="right-content">
           <div class="card-title-container">
-            <img src="../assets/svg/title-icon.svg" alt="" />
+            <img src="@/assets/svg/title-icon.svg" alt="" />
             <span>竞品企业</span>
           </div>
           <div class="competitor-container">

@@ -4,19 +4,19 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const currentNavbar = ref("/enterprise-data");
+const currentNavbar = ref("/enterprise");
 const navbarList = ref([
   {
     name: "企业数据",
-    path: "/enterprise-data",
+    path: "/enterprise",
   },
   {
     name: "科研带头人",
-    path: "/scientific-leader",
+    path: "/scientific",
   },
   {
     name: "二次分析",
-    path: "/secondary-analysis",
+    path: "/analysis",
   },
 ]);
 
