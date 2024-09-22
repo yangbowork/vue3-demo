@@ -1,19 +1,16 @@
-<script setup>
+<script lang="ts" setup>
 import { watch } from "vue";
-const modelValue = defineModel();
-const props = defineProps({
-  filtersList: {
-    type: Array,
-    default: () => [],
-  },
-});
+const modelValue = defineModel<any>();
+const props = defineProps<{
+  filtersList: any;
+}>();
 
 watch(
   () => props.filtersList,
   (newVal) => {
     if (Array.isArray(newVal)) {
-      const obj = {};
-      newVal.forEach((item) => {
+      const obj: any = {};
+      newVal.forEach((item: any) => {
         obj[item.title] = {
           value: [],
           isExpand: false,
@@ -25,11 +22,14 @@ watch(
   { immediate: true }
 );
 
-const handleExpand = (index) => {
-  if (props.filtersList[index].disabled) {
+const handleExpand = (index: number) => {
+  if (!props.filtersList || !props.filtersList[index]) {
     return;
   }
-  const title = props.filtersList[index].title;
+  if (props.filtersList[index]?.disabled) {
+    return;
+  }
+  const title = props.filtersList[index]?.title;
   modelValue.value[title].isExpand = !modelValue.value[title].isExpand;
 };
 </script>

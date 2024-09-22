@@ -20,11 +20,52 @@ const goBack = () => {
 const titleList = ref(["人才简介", "论文名称", "专利名称", "综合排名"]);
 const activeTitle = ref("人才简介");
 
+onMounted(() => {
+  renderPieEchart();
+  renderLineEchart();
+});
+
 const pieEchartRef = ref(null);
+const renderPieEchart = () => {
+  const pieEchart = echarts.init(pieEchartRef.value);
+  pieEchart.setOption({
+    tooltip: {
+      trigger: "item",
+    },
+    legend: {
+      top: "middle",
+      left: "right",
+      orient: "verticalAlign",
+      icon: "circle",
+    },
+    series: [
+      {
+        type: "pie",
+        center: ["40%", "50%"],
+        radius: ["40%", "70%"],
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 16,
+            fontWeight: "bold",
+          },
+        },
+        labelLine: {
+          show: true,
+        },
+        data: [
+          { value: 58, name: "永臻科技股份有限公司58%" },
+          { value: 12, name: "永臻科技股份有限公司12%" },
+          { value: 8, name: "永臻科技股份有限公司8%" },
+          { value: 16, name: "永臻科技股份有限公司16%" },
+        ],
+      },
+    ],
+  });
+};
+
 const lineEchartRef = ref(null);
-
 let lineOption = ref<any>(null);
-
 const initLineOption = () => {
   let base = +new Date(2022, 1, 1);
   let oneDay = 24 * 3600 * 1000;
@@ -103,48 +144,11 @@ const initLineOption = () => {
     ],
   };
 };
-
-onMounted(() => {
-  const pieEchart = echarts.init(pieEchartRef.value);
-  pieEchart.setOption({
-    tooltip: {
-      trigger: "item",
-    },
-    legend: {
-      top: "middle",
-      left: "right",
-      orient: "verticalAlign",
-      icon: "circle",
-    },
-    series: [
-      {
-        type: "pie",
-        center: ["40%", "50%"],
-        radius: ["40%", "70%"],
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: 16,
-            fontWeight: "bold",
-          },
-        },
-        labelLine: {
-          show: true,
-        },
-        data: [
-          { value: 58, name: "永臻科技股份有限公司58%" },
-          { value: 12, name: "永臻科技股份有限公司12%" },
-          { value: 8, name: "永臻科技股份有限公司8%" },
-          { value: 16, name: "永臻科技股份有限公司16%" },
-        ],
-      },
-    ],
-  });
-
+const renderLineEchart = () => {
   const lineEchart = echarts.init(lineEchartRef.value);
   initLineOption();
   lineEchart.setOption(lineOption.value);
-});
+};
 
 const thesisData = ref([
   {
