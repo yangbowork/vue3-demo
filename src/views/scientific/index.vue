@@ -8,109 +8,149 @@ const router = useRouter();
 const filterSelected = ref([]);
 const filtersList = ref([
   {
+    id: 1,
     title: "身份ID",
-    options: [],
+    children: [],
     disabled: true,
+    isClickable: false,
     isExpand: false,
   },
   {
+    id: 2,
     title: "所属高校/企业",
-    options: [],
-    disabled: true,
+    children: [
+      {
+        id: 5,
+        title: "企业",
+        children: [],
+      },
+      {
+        id: 3,
+        title: "高校",
+        children: [
+          {
+            id: 4,
+            title: "高校1",
+            value: "高校1",
+          },
+          
+        ],
+      },
+      {
+        id: 55,
+        title: "企高",
+        children: [],
+      },
+    ],
+    disabled: false,
+    isClickable: false,
     isExpand: false,
   },
   {
+    id: 6,
     title: "年龄",
-    options: [
+    children: [
       {
-        label: "0-10",
-        value: "1",
+        id: 7,
+        title: "0-10",
       },
       {
-        label: "10-18",
-        value: "2",
+        id: 8,
+        title: "10-18",
       },
       {
-        label: "18-28",
-        value: "3",
+        id: 9,
+        title: "18-28",
       },
       {
-        label: "28-40",
-        value: "4",
+        id: 10,
+        title: "28-40",
       },
       {
-        label: "40-60",
-        value: "5",
+        id: 11,
+        title: "40-60",
       },
     ],
     disabled: false,
     isExpand: false,
   },
   {
+    id: 12,
     title: "职称",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
   {
+    id: 13,
     title: "荣誉奖项",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
   {
+    id: 14,
     title: "研究方向",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
   {
+    id: 15,
     title: "论文名称",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
   {
+    id: 16,
     title: "发表时间",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
   {
+    id: 17,
     title: "期刊名称",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
   {
+    id: 18,
     title: "论文研究方向",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
   {
+    id: 19,
     title: "联合单位",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
   {
+    id: 20,
     title: "专利数量",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
   {
+    id: 21,
     title: "专利名称",
-    options: [],
+    children: [],
     disabled: true,
     isExpand: false,
   },
 ]);
 
 const isShowSearchResult = ref(false);
+// 搜索关键词
 const searchValue = ref("");
 const searchData = () => {
+  keyword.value = searchValue.value.trim();
   isShowSearchResult.value = true;
 };
 
@@ -122,38 +162,55 @@ const tableData = ref([
     id: 1,
     leaderName: "张三峰",
     idCard: "3440470140701414078",
-    thesisWorks: "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
+    thesisWorks:
+      "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
     patentInformation: "一种专利自助撰写方法及系统",
   },
   {
     id: 2,
     leaderName: "张三峰",
     idCard: "2016-08-03",
-    thesisWorks: "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
+    thesisWorks:
+      "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
     patentInformation: "一种专利自助撰写方法及系统",
   },
   {
     id: 3,
     leaderName: "张三峰",
     idCard: "2016-08-03",
-    thesisWorks: "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
+    thesisWorks:
+      "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
     patentInformation: "一种专利自助撰写方法及系统",
   },
   {
     id: 4,
     leaderName: "张三峰",
     idCard: "2016-08-03",
-    thesisWorks: "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
+    thesisWorks:
+      "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
     patentInformation: "一种专利自助撰写方法及系统",
   },
   {
     id: 5,
     leaderName: "张三峰",
     idCard: "2016-08-03",
-    thesisWorks: "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
+    thesisWorks:
+      "基于纳米晶体表面配体的非特异性光化学交联反应和飞秒激光动力学输运",
     patentInformation: "一种专利自助撰写方法及系统",
   },
 ]);
+
+const keyword = ref("");
+// 处理搜索标红
+const renderColor = (item: string) => {
+  if (keyword.value !== "" && item.indexOf(keyword.value) !== -1) {
+    return item.replace(
+      keyword.value,
+      `<span style="color: #dd4f48">${keyword.value}</span>`
+    );
+  }
+  return item;
+};
 
 const toDetail = (item: any) => {
   router.push(`/scientific/${item.id}`);
@@ -173,6 +230,7 @@ const toDetail = (item: any) => {
           v-model="searchValue"
           placeholder="请输入科技带头人名称"
           class="scientific-search-input"
+          @keyup.enter="searchData"
         />
         <div class="scientific-search-button" @click="searchData">
           <img src="@/assets/svg/search.svg" alt="" />
@@ -216,21 +274,26 @@ const toDetail = (item: any) => {
           @click="toDetail(item)"
         >
           <div class="scientific-inner-table-item">
-            <div class="item-title">{{ item.leaderName }}</div>
+            <div class="item-title" v-html="renderColor(item.leaderName)"></div>
             <div class="item-row">
               <span class="table-title">身份ID：</span>
               <span class="table-inner">
                 {{ item.idCard }}
               </span>
               <span class="table-title">论文著作：</span>
-              <span class="table-inner" style="width: auto;">
-                {{ item.thesisWorks }}
+              <span
+                class="table-inner"
+                v-html="renderColor(item.thesisWorks)"
+                style="width: auto"
+              >
               </span>
             </div>
             <div class="item-row">
               <span class="table-title">专利信息：</span>
-              <span class="table-inner">
-                {{ item.patentInformation }}
+              <span
+                class="table-inner"
+                v-html="renderColor(item.patentInformation)"
+              >
               </span>
             </div>
           </div>

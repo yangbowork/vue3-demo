@@ -1,5 +1,22 @@
-# Vue 3 + Vite
+## start
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+npm i
+npm run dev
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+启动后
+企业数据页面路由：http://localhost:5173/#/enterprise
+login 路由： http://localhost:5173/#/login
+
+## 2024.9.23 更新
+
+1. 登录页面-手机号11位验证拦截
+2. 增加路由拦截器 未登录状态跳转到登录页面
+3. 新增pinia - 用户信息管理 和 企业信息管理 跳转页面可以看到不同企业数据
+4. 支持过滤器直接读取json数据
+5. 支持企业数据/科研带头人搜索标红功能
+6. 更新mock数据 使图表数据更加真实
+7. 增加退出登录功能
+
+## 2024.9.26 更新
+
+1.支持多级过滤器功能
